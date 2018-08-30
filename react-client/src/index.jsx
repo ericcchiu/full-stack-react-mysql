@@ -7,13 +7,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
+      value: '', 
       items: []
     }
+    this.updateData = this.updateData.bind(this);
+
   }
 
   componentDidMount() {
+    this.updateData();
+    
+  }
+
+  updateData() { 
     $.ajax({
-      url: '/items', 
+      url: '/api/url', 
+      type: "GET",
       success: (data) => {
         this.setState({
           items: data
@@ -25,10 +34,48 @@ class App extends React.Component {
     });
   }
 
+  handleChange(event) { 
+    this.setState({ 
+      value: event.target.value
+    }
+   );
+  }
+
+  handleSubmit(event) { 
+    console.log('This is our submitted value', this.state.value);
+    event.preventDefault();
+    // 
+    $.ajax({
+      url: '/api/url', 
+      type: "POST",
+      data: {url: this.state.value},
+      success: () => {
+       this.updateData();
+      },
+      dataType: 'json',
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
+  
   render () {
     return (<div>
-      <h1>Item List</h1>
+      <h1>Eric App</h1>
       <List items={this.state.items}/>
+
+
+
+<form onSubmit={this.handleSubmit.bind(this)}>
+  <label>
+    New URL:
+    <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)}/>
+  </label>
+  <input type="submit" value="Submit"/>
+</form>
+
+
+      
     </div>)
   }
 }
