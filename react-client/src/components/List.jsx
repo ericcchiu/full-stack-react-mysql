@@ -1,15 +1,20 @@
-import React from 'react';
-import ListItem from './ListItem.jsx';
+import React, {Component} from 'react';
 
-const List = (props) => (
-  <div>
-    <h4> List Component </h4>
-    There are { props.items.length } items.
-    { 
-      props.items.map(item => 
-      <ListItem item={item}/>
-    )}
-  </div>
-)
+class TodoList extends Component { 
+  
+  render() { 
+    return ( 
+      <div className="todoList"> 
+        <div className="header">
+          <form> 
+            <input placeholder="Add task"> 
+            </input>
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      </div>
+    ); 
+  }
+}
 
-export default List;
+export default TodoList; 

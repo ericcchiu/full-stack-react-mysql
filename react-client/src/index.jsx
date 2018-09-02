@@ -1,83 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+// import "./index.css"
+import TodoList from './components/List.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      value: '', 
-      items: []
-    }
-    this.updateData = this.updateData.bind(this);
+var destination = document.querySelector("#app");
 
-  }
-
-  componentDidMount() {
-    this.updateData();
-    
-  }
-
-  updateData() { 
-    $.ajax({
-      url: '/api/url', 
-      type: "GET",
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
-
-  handleChange(event) { 
-    this.setState({ 
-      value: event.target.value
-    }
-   );
-  }
-
-  handleSubmit(event) { 
-    console.log('This is our submitted value', this.state.value);
-    event.preventDefault();
-    // 
-    $.ajax({
-      url: '/api/url', 
-      type: "POST",
-      data: {url: this.state.value},
-      success: () => {
-       this.updateData();
-      },
-      dataType: 'json',
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
-  
-  render () {
-    return (<div>
-      <h1>Eric App</h1>
-      <List items={this.state.items}/>
-
-
-
-<form onSubmit={this.handleSubmit.bind(this)}>
-  <label>
-    New URL:
-    <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)}/>
-  </label>
-  <input type="submit" value="Submit"/>
-</form>
-
-
-      
-    </div>)
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <div> 
+    <p> Helllllloooo</p>
+    <TodoList/>
+  </div>, 
+  destination
+);
