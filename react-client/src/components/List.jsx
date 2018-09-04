@@ -11,4 +11,4 @@ const List = (props) => (
   </div>
 )
 
-export default TodoList; 
+export default List; 
