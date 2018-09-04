@@ -44,7 +44,7 @@ class App extends React.Component {
   handleSubmit(event) { 
     console.log('This is our submitted value', this.state.value);
     event.preventDefault();
-    // 
+    // POST request to /api/url route 
     $.ajax({
       url: '/api/url', 
       type: "POST",
@@ -62,17 +62,19 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Eric App</h1>
-      <List items={this.state.items}/>
+      <List items={ this.state.items }/>
 
 
-
-<form onSubmit={this.handleSubmit.bind(this)}>
-  <label>
-    New URL:
-    <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)}/>
-  </label>
-  <input type="submit" value="Submit"/>
-</form>
+      <form onSubmit={ this.handleSubmit.bind(this) }>
+        <label>
+          New URL:
+          <input type="text" 
+            value={ this.state.value } 
+            onChange={ this.handleChange.bind(this) }
+          />
+        </label>
+        <input type="submit" value="Submit"/>
+      </form>
 
 
       
