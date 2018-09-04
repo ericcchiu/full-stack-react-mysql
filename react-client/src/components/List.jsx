@@ -1,5 +1,4 @@
-import React from 'react';
-import ListItem from './ListItem.jsx';
+import React, {Component} from 'react';
 
 const List = (props) => (
   <div>
@@ -12,4 +11,4 @@ const List = (props) => (
   </div>
 )
 
-export default List;
+export default TodoList; 
