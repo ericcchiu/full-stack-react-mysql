@@ -8,9 +8,11 @@ class App extends React.Component {
     super(props);
     this.state = { 
       value: '', 
-      items: []
+      items: [],
+      selected: ''
     }
     this.updateData = this.updateData.bind(this);
+    this.handleSelect = this.handleSelect.bind(this); 
 
   }
 
@@ -24,7 +26,9 @@ class App extends React.Component {
       url: '/api/url', 
       type: "GET",
       success: (data) => {
+        console.log('THIS IS OUR DATA', data)
         this.setState({
+          
           items: data
         })
       },
@@ -40,6 +44,15 @@ class App extends React.Component {
     }
    );
   }
+
+  handleSelect(urlClicked) { 
+    this.setState({
+      selected: urlClicked
+    })
+
+  }
+
+
 
   handleSubmit(event) { 
     console.log('This is our submitted value', this.state.value);
@@ -62,7 +75,9 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Eric App</h1>
-      <List items={ this.state.items }/>
+      <h2>Selected Item:</h2>
+      {this.state.selected}
+      <List items={ this.state.items } handleSelect={this.handleSelect}/>
 
 
       <form onSubmit={ this.handleSubmit.bind(this) }>

@@ -16,13 +16,15 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/api/url', function (req, res) {
-  items.selectAll(function (err, data) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
+  // items.selectAll(function (err, data) {
+  //   if (err) {
+  //     res.sendStatus(500);
+  //   } else {
+  //     res.json(data);
+  //   }
+  // });
+  const urlArr = ['url1', 'url2', 'url3'];
+  res.send(urlArr);
 });
 
 app.post('/api/url', (req, res) => {
